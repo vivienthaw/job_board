@@ -1,0 +1,40 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Get a free hosted Postgres database in seconds: `npx create-db`
+
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "sqlite"
+}
+
+model User {
+  id         String @id @default(cuid(2))
+  name       String
+  email      String
+  created_at String
+  jobs       Jobs[]
+}
+
+model Jobs {
+  id          String  @id @default(cuid(2))
+  title       String
+  company     String
+  location    String
+  description String
+  salary      Decimal
+  type        JobType @default(FULLTIME)
+  created_at  String
+  user_id     String
+  user        User    @relation(fields: [user_id], references: [id], onDelete: Cascade)
+}
+
+enum JobType {
+  FULLTIME
+  PARTTIME
+  INTERN
+}
