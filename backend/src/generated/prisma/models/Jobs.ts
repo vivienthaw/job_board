@@ -42,7 +42,7 @@ export type JobsMinAggregateOutputType = {
   description: string | null
   salary: runtime.Decimal | null
   type: $Enums.JobType | null
-  created_at: string | null
+  created_at: Date | null
   user_id: string | null
 }
 
@@ -54,7 +54,7 @@ export type JobsMaxAggregateOutputType = {
   description: string | null
   salary: runtime.Decimal | null
   type: $Enums.JobType | null
-  created_at: string | null
+  created_at: Date | null
   user_id: string | null
 }
 
@@ -211,7 +211,7 @@ export type JobsGroupByOutputType = {
   description: string
   salary: runtime.Decimal
   type: $Enums.JobType
-  created_at: string
+  created_at: Date
   user_id: string
   _count: JobsCountAggregateOutputType | null
   _avg: JobsAvgAggregateOutputType | null
@@ -246,7 +246,7 @@ export type JobsWhereInput = {
   description?: Prisma.StringFilter<"Jobs"> | string
   salary?: Prisma.DecimalFilter<"Jobs"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   type?: Prisma.EnumJobTypeFilter<"Jobs"> | $Enums.JobType
-  created_at?: Prisma.StringFilter<"Jobs"> | string
+  created_at?: Prisma.DateTimeFilter<"Jobs"> | Date | string
   user_id?: Prisma.StringFilter<"Jobs"> | string
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
 }
@@ -275,7 +275,7 @@ export type JobsWhereUniqueInput = Prisma.AtLeast<{
   description?: Prisma.StringFilter<"Jobs"> | string
   salary?: Prisma.DecimalFilter<"Jobs"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   type?: Prisma.EnumJobTypeFilter<"Jobs"> | $Enums.JobType
-  created_at?: Prisma.StringFilter<"Jobs"> | string
+  created_at?: Prisma.DateTimeFilter<"Jobs"> | Date | string
   user_id?: Prisma.StringFilter<"Jobs"> | string
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
 }, "id">
@@ -308,7 +308,7 @@ export type JobsScalarWhereWithAggregatesInput = {
   description?: Prisma.StringWithAggregatesFilter<"Jobs"> | string
   salary?: Prisma.DecimalWithAggregatesFilter<"Jobs"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   type?: Prisma.EnumJobTypeWithAggregatesFilter<"Jobs"> | $Enums.JobType
-  created_at?: Prisma.StringWithAggregatesFilter<"Jobs"> | string
+  created_at?: Prisma.DateTimeWithAggregatesFilter<"Jobs"> | Date | string
   user_id?: Prisma.StringWithAggregatesFilter<"Jobs"> | string
 }
 
@@ -320,7 +320,7 @@ export type JobsCreateInput = {
   description: string
   salary: runtime.Decimal | runtime.DecimalJsLike | number | string
   type?: $Enums.JobType
-  created_at: string
+  created_at?: Date | string
   user: Prisma.UserCreateNestedOneWithoutJobsInput
 }
 
@@ -332,7 +332,7 @@ export type JobsUncheckedCreateInput = {
   description: string
   salary: runtime.Decimal | runtime.DecimalJsLike | number | string
   type?: $Enums.JobType
-  created_at: string
+  created_at?: Date | string
   user_id: string
 }
 
@@ -344,7 +344,7 @@ export type JobsUpdateInput = {
   description?: Prisma.StringFieldUpdateOperationsInput | string
   salary?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   type?: Prisma.EnumJobTypeFieldUpdateOperationsInput | $Enums.JobType
-  created_at?: Prisma.StringFieldUpdateOperationsInput | string
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   user?: Prisma.UserUpdateOneRequiredWithoutJobsNestedInput
 }
 
@@ -356,7 +356,7 @@ export type JobsUncheckedUpdateInput = {
   description?: Prisma.StringFieldUpdateOperationsInput | string
   salary?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   type?: Prisma.EnumJobTypeFieldUpdateOperationsInput | $Enums.JobType
-  created_at?: Prisma.StringFieldUpdateOperationsInput | string
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   user_id?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
@@ -368,7 +368,7 @@ export type JobsCreateManyInput = {
   description: string
   salary: runtime.Decimal | runtime.DecimalJsLike | number | string
   type?: $Enums.JobType
-  created_at: string
+  created_at?: Date | string
   user_id: string
 }
 
@@ -380,7 +380,7 @@ export type JobsUpdateManyMutationInput = {
   description?: Prisma.StringFieldUpdateOperationsInput | string
   salary?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   type?: Prisma.EnumJobTypeFieldUpdateOperationsInput | $Enums.JobType
-  created_at?: Prisma.StringFieldUpdateOperationsInput | string
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type JobsUncheckedUpdateManyInput = {
@@ -391,7 +391,7 @@ export type JobsUncheckedUpdateManyInput = {
   description?: Prisma.StringFieldUpdateOperationsInput | string
   salary?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   type?: Prisma.EnumJobTypeFieldUpdateOperationsInput | $Enums.JobType
-  created_at?: Prisma.StringFieldUpdateOperationsInput | string
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   user_id?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
@@ -511,7 +511,7 @@ export type JobsCreateWithoutUserInput = {
   description: string
   salary: runtime.Decimal | runtime.DecimalJsLike | number | string
   type?: $Enums.JobType
-  created_at: string
+  created_at?: Date | string
 }
 
 export type JobsUncheckedCreateWithoutUserInput = {
@@ -522,7 +522,7 @@ export type JobsUncheckedCreateWithoutUserInput = {
   description: string
   salary: runtime.Decimal | runtime.DecimalJsLike | number | string
   type?: $Enums.JobType
-  created_at: string
+  created_at?: Date | string
 }
 
 export type JobsCreateOrConnectWithoutUserInput = {
@@ -561,7 +561,7 @@ export type JobsScalarWhereInput = {
   description?: Prisma.StringFilter<"Jobs"> | string
   salary?: Prisma.DecimalFilter<"Jobs"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   type?: Prisma.EnumJobTypeFilter<"Jobs"> | $Enums.JobType
-  created_at?: Prisma.StringFilter<"Jobs"> | string
+  created_at?: Prisma.DateTimeFilter<"Jobs"> | Date | string
   user_id?: Prisma.StringFilter<"Jobs"> | string
 }
 
@@ -573,7 +573,7 @@ export type JobsCreateManyUserInput = {
   description: string
   salary: runtime.Decimal | runtime.DecimalJsLike | number | string
   type?: $Enums.JobType
-  created_at: string
+  created_at?: Date | string
 }
 
 export type JobsUpdateWithoutUserInput = {
@@ -584,7 +584,7 @@ export type JobsUpdateWithoutUserInput = {
   description?: Prisma.StringFieldUpdateOperationsInput | string
   salary?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   type?: Prisma.EnumJobTypeFieldUpdateOperationsInput | $Enums.JobType
-  created_at?: Prisma.StringFieldUpdateOperationsInput | string
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type JobsUncheckedUpdateWithoutUserInput = {
@@ -595,7 +595,7 @@ export type JobsUncheckedUpdateWithoutUserInput = {
   description?: Prisma.StringFieldUpdateOperationsInput | string
   salary?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   type?: Prisma.EnumJobTypeFieldUpdateOperationsInput | $Enums.JobType
-  created_at?: Prisma.StringFieldUpdateOperationsInput | string
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type JobsUncheckedUpdateManyWithoutUserInput = {
@@ -606,7 +606,7 @@ export type JobsUncheckedUpdateManyWithoutUserInput = {
   description?: Prisma.StringFieldUpdateOperationsInput | string
   salary?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   type?: Prisma.EnumJobTypeFieldUpdateOperationsInput | $Enums.JobType
-  created_at?: Prisma.StringFieldUpdateOperationsInput | string
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 
@@ -686,7 +686,7 @@ export type $JobsPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     description: string
     salary: runtime.Decimal
     type: $Enums.JobType
-    created_at: string
+    created_at: Date
     user_id: string
   }, ExtArgs["result"]["jobs"]>
   composites: {}
@@ -1119,7 +1119,7 @@ export interface JobsFieldRefs {
   readonly description: Prisma.FieldRef<"Jobs", 'String'>
   readonly salary: Prisma.FieldRef<"Jobs", 'Decimal'>
   readonly type: Prisma.FieldRef<"Jobs", 'JobType'>
-  readonly created_at: Prisma.FieldRef<"Jobs", 'String'>
+  readonly created_at: Prisma.FieldRef<"Jobs", 'DateTime'>
   readonly user_id: Prisma.FieldRef<"Jobs", 'String'>
 }
     

@@ -636,6 +636,13 @@ export type StringFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 
 
 
 /**
+ * Reference to a field of type 'DateTime'
+ */
+export type DateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime'>
+    
+
+
+/**
  * Reference to a field of type 'Decimal'
  */
 export type DecimalFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Decimal'>

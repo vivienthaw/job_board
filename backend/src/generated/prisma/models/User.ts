@@ -28,14 +28,14 @@ export type UserMinAggregateOutputType = {
   id: string | null
   name: string | null
   email: string | null
-  created_at: string | null
+  created_at: Date | null
 }
 
 export type UserMaxAggregateOutputType = {
   id: string | null
   name: string | null
   email: string | null
-  created_at: string | null
+  created_at: Date | null
 }
 
 export type UserCountAggregateOutputType = {
@@ -145,7 +145,7 @@ export type UserGroupByOutputType = {
   id: string
   name: string
   email: string
-  created_at: string
+  created_at: Date
   _count: UserCountAggregateOutputType | null
   _min: UserMinAggregateOutputType | null
   _max: UserMaxAggregateOutputType | null
@@ -173,7 +173,7 @@ export type UserWhereInput = {
   id?: Prisma.StringFilter<"User"> | string
   name?: Prisma.StringFilter<"User"> | string
   email?: Prisma.StringFilter<"User"> | string
-  created_at?: Prisma.StringFilter<"User"> | string
+  created_at?: Prisma.DateTimeFilter<"User"> | Date | string
   jobs?: Prisma.JobsListRelationFilter
 }
 
@@ -192,7 +192,7 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   NOT?: Prisma.UserWhereInput | Prisma.UserWhereInput[]
   name?: Prisma.StringFilter<"User"> | string
   email?: Prisma.StringFilter<"User"> | string
-  created_at?: Prisma.StringFilter<"User"> | string
+  created_at?: Prisma.DateTimeFilter<"User"> | Date | string
   jobs?: Prisma.JobsListRelationFilter
 }, "id">
 
@@ -213,14 +213,14 @@ export type UserScalarWhereWithAggregatesInput = {
   id?: Prisma.StringWithAggregatesFilter<"User"> | string
   name?: Prisma.StringWithAggregatesFilter<"User"> | string
   email?: Prisma.StringWithAggregatesFilter<"User"> | string
-  created_at?: Prisma.StringWithAggregatesFilter<"User"> | string
+  created_at?: Prisma.DateTimeWithAggregatesFilter<"User"> | Date | string
 }
 
 export type UserCreateInput = {
   id?: string
   name: string
   email: string
-  created_at: string
+  created_at?: Date | string
   jobs?: Prisma.JobsCreateNestedManyWithoutUserInput
 }
 
@@ -228,7 +228,7 @@ export type UserUncheckedCreateInput = {
   id?: string
   name: string
   email: string
-  created_at: string
+  created_at?: Date | string
   jobs?: Prisma.JobsUncheckedCreateNestedManyWithoutUserInput
 }
 
@@ -236,7 +236,7 @@ export type UserUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
-  created_at?: Prisma.StringFieldUpdateOperationsInput | string
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   jobs?: Prisma.JobsUpdateManyWithoutUserNestedInput
 }
 
@@ -244,7 +244,7 @@ export type UserUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
-  created_at?: Prisma.StringFieldUpdateOperationsInput | string
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   jobs?: Prisma.JobsUncheckedUpdateManyWithoutUserNestedInput
 }
 
@@ -252,21 +252,21 @@ export type UserCreateManyInput = {
   id?: string
   name: string
   email: string
-  created_at: string
+  created_at?: Date | string
 }
 
 export type UserUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
-  created_at?: Prisma.StringFieldUpdateOperationsInput | string
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type UserUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
-  created_at?: Prisma.StringFieldUpdateOperationsInput | string
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type UserCountOrderByAggregateInput = {
@@ -299,6 +299,10 @@ export type StringFieldUpdateOperationsInput = {
   set?: string
 }
 
+export type DateTimeFieldUpdateOperationsInput = {
+  set?: Date | string
+}
+
 export type UserCreateNestedOneWithoutJobsInput = {
   create?: Prisma.XOR<Prisma.UserCreateWithoutJobsInput, Prisma.UserUncheckedCreateWithoutJobsInput>
   connectOrCreate?: Prisma.UserCreateOrConnectWithoutJobsInput
@@ -317,14 +321,14 @@ export type UserCreateWithoutJobsInput = {
   id?: string
   name: string
   email: string
-  created_at: string
+  created_at?: Date | string
 }
 
 export type UserUncheckedCreateWithoutJobsInput = {
   id?: string
   name: string
   email: string
-  created_at: string
+  created_at?: Date | string
 }
 
 export type UserCreateOrConnectWithoutJobsInput = {
@@ -347,14 +351,14 @@ export type UserUpdateWithoutJobsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
-  created_at?: Prisma.StringFieldUpdateOperationsInput | string
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type UserUncheckedUpdateWithoutJobsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
-  created_at?: Prisma.StringFieldUpdateOperationsInput | string
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 
@@ -435,7 +439,7 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     id: string
     name: string
     email: string
-    created_at: string
+    created_at: Date
   }, ExtArgs["result"]["user"]>
   composites: {}
 }
@@ -863,7 +867,7 @@ export interface UserFieldRefs {
   readonly id: Prisma.FieldRef<"User", 'String'>
   readonly name: Prisma.FieldRef<"User", 'String'>
   readonly email: Prisma.FieldRef<"User", 'String'>
-  readonly created_at: Prisma.FieldRef<"User", 'String'>
+  readonly created_at: Prisma.FieldRef<"User", 'DateTime'>
 }
     
 
